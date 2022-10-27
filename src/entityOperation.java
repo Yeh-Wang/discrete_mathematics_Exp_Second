@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class entityOperation {  //创建实体存储序偶集(relation)
     private String pr;
     private String data;
@@ -26,6 +28,11 @@ public class entityOperation {  //创建实体存储序偶集(relation)
 
     public void setRe(String re) {
         this.re = re;
+    }
+
+    public boolean getSpecifiedData(String pr,String re)  //判断参数是否满足pr和re
+    {
+        return Objects.equals(this.pr, pr) && Objects.equals(this.re, re);
     }
 
     public String toString()

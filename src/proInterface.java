@@ -33,7 +33,6 @@ public class proInterface {
                 list.get(i).setData(gather);
                 scanner.reset();
             }
-
             count++;
         }
     }
