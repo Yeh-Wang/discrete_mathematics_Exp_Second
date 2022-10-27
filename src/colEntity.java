@@ -1,3 +1,8 @@
+/**
+ * @author :Yeh-Wang
+ * @date : 2022/10/27
+ */
+
 public class colEntity {  //存储集合元素
     private String data;
 

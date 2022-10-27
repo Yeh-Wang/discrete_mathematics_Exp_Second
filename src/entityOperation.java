@@ -1,5 +1,9 @@
-import java.util.Objects;
+/**
+ * @author :Yeh-Wang
+ * @date : 2022/10/27
+ */
 
+import java.util.Objects;
 public class entityOperation {  //创建实体存储序偶集(relation)
     private String pr;
     private String data;
