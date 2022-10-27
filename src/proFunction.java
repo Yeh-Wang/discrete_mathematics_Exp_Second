@@ -79,7 +79,6 @@ public class proFunction {
      * @declare 判断<A, *>代数系统中是否有幺元
      */
     public String JudgeIE(ArrayList<entityOperation> list, ArrayList<colEntity> col) {
-        boolean flag = false;
         String IE = " ";
         for (int i = 0; i < col.size(); i++) {
             int j;
@@ -91,7 +90,6 @@ public class proFunction {
                 }
             }
             if (j == col.size()) {
-                flag = true;
                 IE = col.get(i).getData();
                 break;
             }
