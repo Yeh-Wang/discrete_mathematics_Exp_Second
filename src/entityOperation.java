@@ -3,12 +3,12 @@
  * @date : 2022/10/27
  */
 
-import java.util.Objects;
 public class entityOperation {  //创建实体存储序偶集(relation)
     private String pr;
     private String data;
-    private String re;
-    public entityOperation() {pr="";data="";re="";}
+    private String su;
+    public entityOperation() {pr="";data="";
+        su ="";}
 
     public String getPr() {
         return pr;
@@ -26,21 +26,16 @@ public class entityOperation {  //创建实体存储序偶集(relation)
         this.data = data;
     }
 
-    public String getRe() {
-        return re;
+    public String getSu() {
+        return su;
     }
 
-    public void setRe(String re) {
-        this.re = re;
-    }
-
-    public boolean getSpecifiedData(String pr,String re)  //判断参数是否满足pr和re
-    {
-        return Objects.equals(this.pr, pr) && Objects.equals(this.re, re);
+    public void setSu(String su) {
+        this.su = su;
     }
 
     public String toString()
     {
-        return pr + " * " + re + " = " + data;
+        return pr + " * " + su + " = " + data;
     }
 }

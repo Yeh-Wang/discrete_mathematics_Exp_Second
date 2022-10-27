@@ -38,6 +38,26 @@ public class proInterface {
                 list.get(i).setData(gather);
                 scanner.reset();
             }
+
+            if(fun.JudgeClosed(list))
+            {
+                System.out.println("满足封闭性");
+                if(fun.JudgeAssociative(list,col)){
+                    System.out.println("满足结合律");
+                    if(fun.JudgeIE(list,col)){
+                        System.out.println("存在幺元");
+                    } else {
+                        System.out.println("不存在幺元");
+                    }
+                }else {
+                    System.out.println("不满足结合律");
+                }
+            } else {
+                System.out.println("不满足封闭性");
+            }
+
+            list.clear();
+            col.clear();
             count++;
         }
     }

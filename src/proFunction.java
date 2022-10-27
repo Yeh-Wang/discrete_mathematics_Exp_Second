@@ -13,8 +13,7 @@ public class proFunction {
      *
      * @param col a known collection
      */
-    public ArrayList<entityOperation> setList(ArrayList<colEntity> col)
-    {
+    public ArrayList<entityOperation> setList(ArrayList<colEntity> col) {
         ArrayList<entityOperation> list = new ArrayList<>();
         for (int i = 0; i < col.size(); i++) {
             for (int j = 0; j < col.size(); j++) {
@@ -25,7 +24,7 @@ public class proFunction {
         }
         int j = 0;
         for (int i = 0; i < list.size(); i++) {
-            list.get(i).setRe(col.get(j).getData());
+            list.get(i).setSu(col.get(j).getData());
             j++;
             if (j == col.size())
                 j = 0;
@@ -38,8 +37,7 @@ public class proFunction {
      *
      * @param list a table of operations for known sets
      */
-    public boolean JudgeClosed(ArrayList<entityOperation> list)
-    {
+    public boolean JudgeClosed(ArrayList<entityOperation> list) {
         boolean flag = true;
         for (int i = 0; i < list.size(); i++) {
             int j;
@@ -55,22 +53,64 @@ public class proFunction {
         return flag;
     }
 
-
     /**
-     *
-     * @declare 判断所给运算表是否满足结合律
-     *
      * @param list a table of operations for known sets
+     * @param col  a collection of elements
+     * @declare 判断所给运算表是否满足结合律
      */
-    public boolean JudgeAssociative(ArrayList<entityOperation> list)  //判断是否满足结合律
-    {
+    public boolean JudgeAssociative(ArrayList<entityOperation> list, ArrayList<colEntity> col) {
         boolean flag = true;
-        for(int i=0;i<list.size();i++)
-        {
-            for(int j=0;j< list.size();j++)
-            {
+        for (int i = 0; i < col.size(); i++) {
+            for (int j = 0; j < col.size(); j++) {
+                for (int k = 0; k < col.size(); k++) {
+                    String newData_1 = get_data_By_Pr_Re(list, col.get(i).getData(), col.get(j).getData());
+                    String newData_2 = get_data_By_Pr_Re(list, col.get(j).getData(), col.get(k).getData());
+                    if (!Objects.equals(get_data_By_Pr_Re(list, newData_1, col.get(k).getData()), get_data_By_Pr_Re(list, col.get(i).getData(), newData_2))) {
+                        flag = false;
+                        break;
+                    }
+                }
             }
         }
         return flag;
+    }
+
+    /**
+     *
+     * @declare 判断所给运算表是否有幺元
+     *
+     * @param list a table of operations for known sets
+     * @param col  a collection of elements
+     */
+    public boolean JudgeIE(ArrayList<entityOperation> list, ArrayList<colEntity> col) {
+        boolean flag = true;
+        for (int i = 0; i < col.size(); i++) {
+            for (int j = 0; j < col.size(); j++) {
+                String newData_1 = get_data_By_Pr_Re(list, col.get(i).getData(), col.get(j).getData());
+                String newData_2 = get_data_By_Pr_Re(list, col.get(j).getData(), col.get(i).getData());
+                if(!Objects.equals(newData_1, newData_2))
+                {
+                    flag = false;
+                    break;
+                }
+            }
+        }
+        return flag;
+    }
+
+    /**
+     * 根据前驱后继元素在运算表中寻找相对应的结果
+     *
+     * @param list a table of operations for known sets
+     * @param pr   precursor element
+     * @param su   successor element
+     */
+    public String get_data_By_Pr_Re(ArrayList<entityOperation> list, String pr, String su) {
+        int i;
+        for (i = 0; i < list.size(); i++) {
+            if (Objects.equals(list.get(i).getPr(), pr) && Objects.equals(list.get(i).getSu(), su))
+                break;
+        }
+        return list.get(i).getData();
     }
 }
