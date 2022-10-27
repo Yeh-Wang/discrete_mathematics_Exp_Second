@@ -4,6 +4,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class proInterface {
@@ -38,24 +39,32 @@ public class proInterface {
                 list.get(i).setData(gather);
                 scanner.reset();
             }
-
-            if(fun.JudgeClosed(list))
-            {
+            fun.print(list,col);
+//判断所输入的代数系统是否是群----------------------------------------------------------------------------
+            if (fun.JudgeClosed(list)) {
                 System.out.println("满足封闭性");
-                if(fun.JudgeAssociative(list,col)){
+                if (fun.JudgeAssociative(list, col)) {
                     System.out.println("满足结合律");
-                    if(fun.JudgeIE(list,col)){
-                        System.out.println("存在幺元");
+                    if (!Objects.equals(fun.JudgeIE(list, col), " ")) {
+                        System.out.println("存在幺元:" + fun.JudgeIE(list, col));
+                        if (fun.JudgeInverse(list, col)) {
+                            System.out.println("每个元素都有对应的逆元");
+                            System.out.println("该代数系统是群");
+                        } else {
+                            System.out.println("不是每个元素都有逆元");
+                        }
                     } else {
                         System.out.println("不存在幺元");
+                        System.out.println("该代数系统不是群");
                     }
-                }else {
+                } else {
                     System.out.println("不满足结合律");
+                    System.out.println("该代数系统不是群");
                 }
             } else {
                 System.out.println("不满足封闭性");
+                System.out.println("该代数系统不是群");
             }
-
             list.clear();
             col.clear();
             count++;
