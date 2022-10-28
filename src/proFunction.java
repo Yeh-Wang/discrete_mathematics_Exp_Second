@@ -85,9 +85,8 @@ public class proFunction {
             for (j = 0; j < col.size(); j++) {
                 String newData_1 = get_data_By_Pr_Re(list, col.get(i).getData(), col.get(j).getData());
                 String newData_2 = get_data_By_Pr_Re(list, col.get(j).getData(), col.get(i).getData());
-                if (!Objects.equals(newData_1, newData_2)) {
+                if((!Objects.equals(newData_1, col.get(j).getData())) || (!Objects.equals(newData_2, col.get(j).getData())))
                     break;
-                }
             }
             if (j == col.size()) {
                 IE = col.get(i).getData();
